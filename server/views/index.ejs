@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <form action="/papers/create" method="post" enctype="multipart/form-data">
+        <input type="text" placeholder="Nhap ten" id="tenbaibao" name="tenbaibao">
+        <br>
+        <input type="text" placeholder="Nhap ten nhom tac gia" id="tennhomtacgia"name="tennhomtacgia">
+        <br>
+        <input type="text" placeholder="Nhap chi so ISBN" id="chisoISBN"name="chisoISBN">
+        <br>
+        <input type="text" placeholder="Nhap so trang" id="sotrang" name="sotrang">
+        <br>
+        <input type="text" placeholder="Nhap nam san xuat" id="namsanxuat"name="namsanxuat">
+        <br>
+        <input type="file" name="image">
+        <br>
+        <button type="submit">Submit</button>
+        <br>
+
+    </form>
+
+    <br>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>STT</th>
+                <th>tenbaibao</th>
+                <th>tennhomtacgia</th>
+                <th>chisoISBN</th>
+                <th>sotrang</th>
+                <th>namsanxuat</th>
+                <th>image</th>
+                <th>Action</th>
+    
+            </tr>
+        </thead>
+        
+        <tbody>
+            <% papers.forEach(function(paper, index) {  %>
+                <tr>
+                <td> <%= index + 1 %> </td>
+                <td> <%=paper.tenbaibao %> </td>
+                <td> <%=paper.tennhomtacgia %> </td>
+                <td> <%=paper.chisoISBN %> </td>
+                <td> <%=paper.sotrang %> </td>
+                <td> <%=paper.namsanxuat %> </td>
+                <td> <img src="<%=paper.image %>" alt="image"/>                </td>
+                <td> <form action="/papers/delete/<%= paper.id %>" method="post">
+                        <button type="submit">Xoa</button>
+                    </form>
+                </td>
+            </tr>
+            <% }); %>
+
+           
+        </tbody>
+    </table>
+
+
+    
+</body>
+</html>
